@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <div className="p-4 border rounded-lg">
-        <p className="text-amber-950 font-bold">dsa</p>
+        <p className="text-red-950">dsa</p>
       </div>
     </>
   )
