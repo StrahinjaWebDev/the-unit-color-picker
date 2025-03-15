@@ -49,7 +49,7 @@ const ColorList = () => {
       if (typingTimeout.current) clearTimeout(typingTimeout.current);
     };
   }, [filter]);
-
+  
   return (
     <div className="p-5 bg-gray-500 min-h-screen w-full flex flex-col items-center">
       <h1 className="text-3xl font-bold text-white text-center mb-4">
