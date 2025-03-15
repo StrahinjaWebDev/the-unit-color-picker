@@ -1,14 +1,13 @@
-import './App.css'
+import { Provider } from 'react-redux';
+import { store } from './app/store';
+import ColorList from './presentation/pages/ColorList';
 
-function App() {
-
+const App = () => {
   return (
-    <>
-      <div className="p-4 border rounded-lg">
-        <p className="text-red-950">dsa</p>
-      </div>
-    </>
-  )
-}
+    <Provider store={store}>
+      <ColorList />
+    </Provider>
+  );
+};
 
-export default App
+export default App;
