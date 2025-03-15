@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "jest"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
@@ -27,7 +28,6 @@
     "@types/react": "^19.0.10",
     "@types/react-color": "^3.0.13",
     "@types/react-dom": "^19.0.4",
-    "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
@@ -36,6 +36,7 @@
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "tailwindcss": "^4.0.14",
+    "ts-jest": "^29.2.6",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0"
