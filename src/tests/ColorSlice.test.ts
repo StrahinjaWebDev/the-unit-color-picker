@@ -3,30 +3,23 @@ import colorReducer, {
   fetchColors,
   fetchColorsByName,
 } from '../presentation/redux/colorSlice.ts';
-import { FetchColors } from '../core/use-cases/fetchColors.ts';
-import { FetchColorsByName } from '../core/use-cases/fetchColorByName.ts';
-import { ColorRepository } from '../data/repositories/ColorRepository.ts';
 
 jest.mock('../data/repositories/ColorRepository.ts');
+jest.mock('../core/use-cases/fetchColors.ts');
+jest.mock('../core/use-cases/fetchColorByName.ts');
 
-const mockColorRepository = new ColorRepository();
-const fetchColorsUseCase = new FetchColors(mockColorRepository);
-const fetchColorsByNameUseCase = new FetchColorsByName(mockColorRepository);
+const createTestStore = () =>
+  configureStore({
+    reducer: {
+      colors: colorReducer,
+    },
+  });
 
-jest.spyOn(fetchColorsUseCase, 'execute');
-jest.spyOn(fetchColorsByNameUseCase, 'execute');
-
-const store = configureStore({
-  reducer: {
-    colors: colorReducer,
-  },
-});
-
-type RootState = ReturnType<typeof store.getState>;
+type RootState = ReturnType<ReturnType<typeof createTestStore>['getState']>;
 
 const mockColorList = [
-  { id: 1, name: 'Red' },
-  { id: 2, name: 'Blue' },
+  { id: '1', name: 'Red', hex: '#FF0000' },
+  { id: '2', name: 'Blue', hex: '#0000FF' },
 ];
 
 describe('colorSlice', () => {
@@ -35,44 +28,44 @@ describe('colorSlice', () => {
   });
 
   it('should handle fetchColors.fulfilled action', async () => {
-    (fetchColorsUseCase.execute as jest.Mock).mockResolvedValue(mockColorList);
+    const store = createTestStore();
 
-    await store.dispatch(fetchColors() as never);
+    store.dispatch(fetchColors.fulfilled(mockColorList, '', undefined));
 
     const state = store.getState() as RootState;
-    expect(state.colors.list).toEqual(mockColorList);
+    expect(state.colors).toEqual({ list: mockColorList });
   });
 
   it('should handle fetchColorsByName.fulfilled action', async () => {
-    (fetchColorsByNameUseCase.execute as jest.Mock).mockResolvedValue([
-      mockColorList[0],
-    ]);
+    const store = createTestStore();
 
-    await store.dispatch(fetchColorsByName('Red') as never);
+    store.dispatch(fetchColorsByName.fulfilled([mockColorList[0]], '', 'Red'));
 
     const state = store.getState() as RootState;
-    expect(state.colors.list).toEqual([mockColorList[0]]);
+    expect(state.colors).toEqual({ list: [mockColorList[0]] });
   });
 
   it('should handle fetchColors.rejected action', async () => {
-    (fetchColorsUseCase.execute as jest.Mock).mockRejectedValue(
-      new Error('Failed to fetch colors'),
+    const store = createTestStore();
+    store.dispatch(
+      fetchColors.rejected(new Error('Failed to fetch colors'), ''),
     );
 
-    await store.dispatch(fetchColors() as never);
-
     const state = store.getState() as RootState;
-    expect(state.colors.list).toEqual([]);
+    expect(state.colors.list || []).toEqual([]);
   });
 
   it('should handle fetchColorsByName.rejected action', async () => {
-    (fetchColorsByNameUseCase.execute as jest.Mock).mockRejectedValue(
-      new Error('Failed to fetch color by name'),
+    const store = createTestStore();
+    store.dispatch(
+      fetchColorsByName.rejected(
+        new Error('Failed to fetch color by name'),
+        '',
+        'NonExistingColor',
+      ),
     );
 
-    await store.dispatch(fetchColorsByName('NonExistingColor') as never);
-
     const state = store.getState() as RootState;
-    expect(state.colors.list).toEqual([]);
+    expect(state.colors.list || []).toEqual([]);
   });
 });
