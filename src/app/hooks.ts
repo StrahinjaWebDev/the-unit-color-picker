@@ -15,8 +15,8 @@ export const useColors = () => {
   };
 
   const loadColorsByName = (name: string) => {
-    dispatch(fetchColorsByName(name));
+    return dispatch(fetchColorsByName(name));
   };
-
+  
   return { colors, loadColors, loadColorsByName };
 };

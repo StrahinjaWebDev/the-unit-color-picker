@@ -1,14 +1,24 @@
-import { useState } from 'react';
+import { ChangeEvent } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 interface ColorFilterProps {
-  onFilter: (name: string) => void;
-  initialValue: string;
+  filter: string;
+  setFilter: (filter: string) => void;
 }
 
-const ColorFilter = ({ onFilter }: ColorFilterProps) => {
-  const [filter, setFilter] = useState('');
+const ColorFilter = ({ filter, setFilter }: ColorFilterProps) => {
+  const [, setSearchParams] = useSearchParams();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onFilter = (newFilter: string) => {
+    setFilter(newFilter);
+    if (newFilter) {
+      setSearchParams({ name: newFilter });
+    } else {
+      setSearchParams({});
+    }
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setFilter(value);
     onFilter(value);

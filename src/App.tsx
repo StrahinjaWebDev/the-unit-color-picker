@@ -2,12 +2,14 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ColorList from './presentation/pages/ColorManagement.tsx';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   return (
     <Provider store={store}>
       <Router>
         <ColorList />
+        <Toaster />
       </Router>
     </Provider>
   );
