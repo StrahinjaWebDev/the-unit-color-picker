@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Color } from '../../core/entities/Color.ts';
+import { Color } from '../../core/entities/Color';
+import { SketchPicker } from 'react-color';
 
 interface ColorFormProps {
   onSubmit: (color: Color) => void;
@@ -17,26 +18,40 @@ const ColorForm = ({ onSubmit }: ColorFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-4">
-      <div>
+    <form
+      onSubmit={handleSubmit}
+      className="bg-gray-900 p-6 rounded-lg shadow-xl max-w-md mx-auto mb-6"
+    >
+      <div className="mb-4">
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="p-2 border rounded"
-          placeholder="Color Name"
+          className="w-full p-3 border-2 border-gray-600 rounded-lg text-white bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter Color Name"
         />
       </div>
-      <div>
-        <input
-          type="text"
-          value={hex}
-          onChange={(e) => setHex(e.target.value)}
-          className="p-2 border rounded"
-          placeholder="Hex Value"
-        />
+
+      <div className="flex flex-col items-center bg-gray-800 p-4 rounded-lg shadow-lg mb-4">
+        <label htmlFor="colorPicker" className="text-white font-semibold mb-2">
+          Pick a Color
+        </label>
+        <div className="p-4 border-2 border-gray-600 rounded-lg">
+          <SketchPicker
+            color={hex}
+            onChange={(color: Pick<Color, 'hex'>) => setHex(color.hex)}
+            className="rounded-lg"
+          />
+        </div>
+        <p className="mt-2 text-white">
+          Selected Color: <span className="font-bold">{hex}</span>
+        </p>
       </div>
-      <button type="submit" className="mt-2 p-2 bg-blue-500 text-white rounded">
+
+      <button
+        type="submit"
+        className="w-full p-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+      >
         Add Color
       </button>
     </form>

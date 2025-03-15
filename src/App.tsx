@@ -1,11 +1,14 @@
 import { Provider } from 'react-redux';
 import { store } from './app/store';
-import ColorList from './presentation/pages/ColorList';
+import { BrowserRouter as Router } from 'react-router-dom';
+import ColorList from './presentation/pages/ColorManagement.tsx';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <ColorList />
+      <Router>
+        <ColorList />
+      </Router>
     </Provider>
   );
 };

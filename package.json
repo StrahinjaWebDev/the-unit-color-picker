@@ -14,14 +14,17 @@
     "@tailwindcss/vite": "^4.0.14",
     "axios": "^1.8.3",
     "react": "^19.0.0",
+    "react-color": "^2.19.3",
     "react-dom": "^19.0.0",
-    "react-redux": "^9.2.0"
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "@tailwindcss/postcss": "^4.0.14",
     "@types/jest": "^29.5.14",
     "@types/react": "^19.0.10",
+    "@types/react-color": "^3.0.13",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.21",

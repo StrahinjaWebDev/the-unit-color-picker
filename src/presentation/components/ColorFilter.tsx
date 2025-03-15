@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 interface ColorFilterProps {
   onFilter: (name: string) => void;
+  initialValue: string;
 }
 
 const ColorFilter = ({ onFilter }: ColorFilterProps) => {
@@ -14,13 +15,13 @@ const ColorFilter = ({ onFilter }: ColorFilterProps) => {
   };
 
   return (
-    <div className="mb-4">
+    <div className="mb-6">
       <input
         type="text"
         value={filter}
         onChange={handleChange}
-        className="p-2 border rounded"
-        placeholder="Filter colors by name"
+        className="w-full p-3 border rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Search for a color..."
       />
     </div>
   );
