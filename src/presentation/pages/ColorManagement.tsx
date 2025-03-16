@@ -27,6 +27,7 @@ const ColorList = () => {
   const deleteColor = async (id: string) => {
     const deleteColorUseCase = new DeleteColor(new ColorRepository());
     await deleteColorUseCase.execute(id);
+    setCurrentIndex(0);
     loadColors();
   };
 
@@ -49,7 +50,7 @@ const ColorList = () => {
       if (typingTimeout.current) clearTimeout(typingTimeout.current);
     };
   }, [filter]);
-  
+
   return (
     <div className="p-5 bg-gray-500 min-h-screen w-full flex flex-col items-center">
       <h1 className="text-3xl font-bold text-white text-center mb-4">
