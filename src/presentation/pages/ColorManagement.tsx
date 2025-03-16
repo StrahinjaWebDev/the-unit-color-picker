@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { useColors } from '../../app/hooks';
-import { useSearchParams } from 'react-router-dom';
+import { useColors } from '../../app/hooks/useColors.ts';
 import { toast } from 'react-hot-toast';
 import ColorFilter from '../components/ColorFilter';
 import ColorForm from '../components/ColorForm';
@@ -9,11 +8,11 @@ import { AddColor } from '../../core/use-cases/addColor.ts';
 import { DeleteColor } from '../../core/use-cases/deleteColor.ts';
 import ColorDisplay from '../components/ColorDisplay.tsx';
 import { ColorRepository } from '../../data/repositories/ColorRepository.ts';
+import useGetSearchParam from '../../app/hooks/useGetSearchParam.ts';
 
 const ColorList = () => {
   const { colors, loadColors, loadColorsByName } = useColors();
-  const [searchParams] = useSearchParams();
-  const [filter, setFilter] = useState(searchParams.get('name') || '');
+  const [filter, setFilter] = useState(useGetSearchParam('name'));
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);

@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import useSetSearchParam from '../../app/hooks/useSetSearchParam.ts';
 
 interface ColorFilterProps {
   filter: string;
@@ -7,21 +7,15 @@ interface ColorFilterProps {
 }
 
 const ColorFilter = ({ filter, setFilter }: ColorFilterProps) => {
-  const [, setSearchParams] = useSearchParams();
+  const setSearchValue = useSetSearchParam();
 
   const onFilter = (newFilter: string) => {
     setFilter(newFilter);
-    if (newFilter) {
-      setSearchParams({ name: newFilter });
-    } else {
-      setSearchParams({});
-    }
+    setSearchValue('name', newFilter || null);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setFilter(value);
-    onFilter(value);
+    onFilter(e.target.value);
   };
 
   return (
