@@ -1,54 +1,92 @@
-# React + TypeScript + Vite
+# Vite React Project with Clean Architecture, TypeScript, Tailwind CSS, and Jest
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a minimal setup for a React application using Vite, TypeScript, Tailwind CSS, and Jest for testing. The
+application follows **Clean Architecture** principles for better scalability and maintainability.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Vite** for fast build and development process
+- **React** for the frontend UI
+- **TypeScript** for type safety and better developer experience
+- **Tailwind CSS** for utility-first CSS
+- **Jest** for unit and integration testing
+- Follows **Clean Architecture** principles
 
-## Expanding the ESLint configuration
+## Requirements
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Before getting started, make sure you have the following tools installed on your machine:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+- [Node.js](https://nodejs.org/) (version 14.x or higher)
+- [npm](https://npmjs.com/)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+```bash
+# Clone the repository
+git clone https://github.com/StrahinjaWebDev/the-unit-color-picker
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
-```
+# Install dependencies
+npm install
+
+# Run the development server
+npm run dev
+
+The app will be running on http://localhost:5173 by default.
+Project Structure
+
+The project follows Clean Architecture principles, and its directory structure is organized as follows:
+
+/src
+  /core                    # Core business logic, entities, use cases, etc.
+  /config                  # Configuration files
+  /entities                # Business entities
+  /interfaces              # TypeScript interfaces
+  /use-cases               # Application-specific use cases
+  /app                     # Application-specific logic
+  /components              # React components
+  /hooks                   # Custom React hooks
+  /pages                   # Page components
+  /tests                   # Unit and integration tests
+
+Core
+
+Contains business entities and use cases.
+
+    Entities: The fundamental objects or concepts within the application domain.
+    Use Cases: Application-specific business logic, which should not depend on UI or infrastructure.
+
+Data
+Contains repositories and services for data storage and fetching. This includes interacting with APIs, local storage, and any other external services.
+
+App
+The application layer, which contains hooks, services, and any logic that ties together the business layer and the UI layer.
+
+Components
+Contains reusable React components that make up the UI of the application.
+
+Pages
+Contains top-level page components that represent views in your application.
+
+Styles
+Tailwind CSS files and any other styles for the project.
+
+Tests
+Contains Jest tests for unit and integration testing.
+
+Utils
+Utility functions to help with common tasks, such as date formatting, etc.
+
+Testing
+This project uses Jest for testing.
+
+Running tests
+npm run test
+
+This project uses ESLint for linting and Prettier for code formatting. To ensure your code is properly formatted and follows best practices, you can run the following command:
+npm run lint
+
+Scripts
+Development
+
+# Start the development server with hot module replacement (HMR)
+npm run dev
