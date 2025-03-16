@@ -38,6 +38,7 @@ const ColorList = () => {
           .catch(() => toast.error(`Color not found with name: ${filter}`));
       } else {
         loadColors();
+        setCurrentIndex(0);
       }
     };
 
