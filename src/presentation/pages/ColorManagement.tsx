@@ -22,8 +22,14 @@ const ColorList = () => {
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const addColor = async (color: Color) => {
-    const addColorUseCase = new AddColor(new ColorRepository());
-    await addColorUseCase.execute(color);
+    const { name, hex } = color;
+
+    if (!name || !hex) {
+      toast.error(`Color ${!name ? 'name' : 'hex'} is required`);
+      return;
+    }
+
+    await new AddColor(new ColorRepository()).execute(color);
     toast.success('Color added successfully');
     loadColors();
   };
@@ -66,12 +72,12 @@ const ColorList = () => {
   }, [filter]);
 
   return (
-    <div className="p-5 bg-gray-500 min-h-screen w-full flex flex-col items-center">
-      <h1 className="text-3xl font-bold text-white text-center mb-4">
+    <div className="p-12 bg-[#181A2A] min-h-screen w-full flex flex-col items-center">
+      <h1 className="text-4xl font-bold text-white text-center p-12 tracking-wide">
         Color Management
       </h1>
 
-      <div className="flex gap-6">
+      <div className="flex gap-24">
         <ColorForm onSubmit={addColor} />
 
         <div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { Color } from '../../core/entities/Color';
 import { SketchPicker } from 'react-color';
 
@@ -10,7 +10,7 @@ const ColorForm = ({ onSubmit }: ColorFormProps) => {
   const [name, setName] = useState('');
   const [hex, setHex] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSubmit({ id: Date.now().toString(), name, hex });
     setName('');
@@ -23,7 +23,7 @@ const ColorForm = ({ onSubmit }: ColorFormProps) => {
         onSubmit={handleSubmit}
         className="bg-gray-900 p-6 rounded-lg shadow-xl max-w-md mx-auto mb-6"
       >
-        <h2 className="text-2xl font-semibold text-white mb-4 pl-6">
+        <h2 className="text-3xl font-bold text-white mb-4 text-center">
           Add New Color
         </h2>
         <div className="mb-4">
