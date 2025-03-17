@@ -9,7 +9,7 @@ import { DeleteColor } from '../../core/use-cases/deleteColor.ts';
 import ColorDisplay from '../components/ColorDisplay.tsx';
 import { ColorRepository } from '../../data/repositories/ColorRepository.ts';
 import useGetSearchParam from '../../app/hooks/useGetSearchParam.ts';
-import ConfirmDeleteModal from '../components/ConfirmDeleteModal'; // Import the modal component
+import ConfirmDeleteModal from '../components/ConfirmDeleteModal';
 
 const ColorList = () => {
   const { colors, loadColors, loadColorsByName } = useColors();
@@ -17,7 +17,7 @@ const ColorList = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [colorToDelete, setColorToDelete] = useState<string | null>(null); // Store the color ID to delete
+  const [colorToDelete, setColorToDelete] = useState<string | null>(null);
 
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
 
