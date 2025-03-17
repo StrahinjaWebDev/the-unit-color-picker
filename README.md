@@ -32,8 +32,8 @@ npm install
 npm run dev
 
 The app will be running on http://localhost:5173 by default.
-Project Structure
 
+Project Structure
 The project follows Clean Architecture principles, and its directory structure is organized as follows:
 
 /src
@@ -49,7 +49,6 @@ The project follows Clean Architecture principles, and its directory structure i
   /tests                   # Unit and integration tests
 
 Core
-
 Contains business entities and use cases.
 
     Entities: The fundamental objects or concepts within the application domain.
@@ -87,6 +86,3 @@ npm run lint
 
 Scripts
 Development
-
-# Start the development server with hot module replacement (HMR)
-npm run dev
