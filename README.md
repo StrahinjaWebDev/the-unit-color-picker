@@ -25,6 +25,9 @@ Before getting started, make sure you have the following tools installed on your
 # Clone the repository
 git clone https://github.com/StrahinjaWebDev/the-unit-color-picker
 
+# Go to folder
+cd the-unit-color-picker
+
 # Install dependencies
 npm install
 
